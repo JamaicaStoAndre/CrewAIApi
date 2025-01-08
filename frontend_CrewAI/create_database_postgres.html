@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Banco de Dados - Postgres</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Menu lateral -->
+    <div class="d-flex">
+        <nav class="sidebar bg-dark text-white p-3">
+            <h4>CrewAI</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link text-white">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="tools.html" class="nav-link text-white">
+                        <i class="fas fa-tools"></i> Tools
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="agents.html" class="nav-link text-white">
+                        <i class="fas fa-users"></i> Agents
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="tasks.html" class="nav-link text-white">
+                        <i class="fas fa-tasks"></i> Tasks
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="credentials.html" class="nav-link text-white active">
+                        <i class="fas fa-key"></i> Credenciais
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link text-white">
+                        <i class="fas fa-cogs"></i> Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="create_automation.html" class="nav-link text-white">
+                        <i class="fas fa-plus"></i> Criar Automação
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo principal -->
+        <div class="content flex-grow-1 p-4">
+            <h1 class="text-center text-primary">Cadastrar Banco de Dados - Postgres</h1>
+            <form id="create-database-form">
+                <!-- Nome do Banco -->
+                <div class="mb-3">
+                    <label for="db-name" class="form-label">Nome do Banco</label>
+                    <input type="text" id="db-name" class="form-control" placeholder="Ex: Banco Principal" required>
+                </div>
+
+                <!-- Descrição do Banco -->
+                <div class="mb-3">
+                    <label for="db-description" class="form-label">Descrição</label>
+                    <textarea id="db-description" class="form-control" rows="3" placeholder="Descreva o banco de dados" required></textarea>
+                </div>
+
+                <!-- Host -->
+                <div class="mb-3">
+                    <label for="db-host" class="form-label">Host</label>
+                    <input type="text" id="db-host" class="form-control" placeholder="Ex: localhost" required>
+                </div>
+
+                <!-- Database -->
+                <div class="mb-3">
+                    <label for="db-database" class="form-label">Database</label>
+                    <input type="text" id="db-database" class="form-control" placeholder="Ex: postgres" required>
+                </div>
+
+                <!-- User -->
+                <div class="mb-3">
+                    <label for="db-user" class="form-label">Usuário</label>
+                    <input type="text" id="db-user" class="form-control" placeholder="Ex: postgres" required>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="db-password" class="form-label">Senha</label>
+                    <input type="password" id="db-password" class="form-control" placeholder="Digite a senha" required>
+                </div>
+
+                <!-- SSL Toggle -->
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="db-ssl-toggle">
+                    <label class="form-check-label" for="db-ssl-toggle">Ignorar Problemas de SSL (Inseguro)</label>
+                </div>
+
+                <!-- SSL Mode -->
+                <div class="mb-3">
+                    <label for="db-ssl-mode" class="form-label">SSL</label>
+                    <select id="db-ssl-mode" class="form-select">
+                        <option value="disable">Desativar</option>
+                        <option value="require">Requerer</option>
+                        <option value="verify-ca">Verificar CA</option>
+                    </select>
+                </div>
+
+                <!-- Port -->
+                <div class="mb-3">
+                    <label for="db-port" class="form-label">Porta</label>
+                    <input type="number" id="db-port" class="form-control" value="5432" required>
+                </div>
+
+                <!-- SSH Tunnel Toggle -->
+                <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="db-ssh-tunnel">
+                    <label class="form-check-label" for="db-ssh-tunnel">Usar SSH Tunnel</label>
+                </div>
+
+                <!-- Actions -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Salvar Banco</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('create-database-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Banco salvo com sucesso!');
+            window.location.href = 'credentials.html';
+        });
+
+        // Handle cancel button
+        document.getElementById('cancel-button').addEventListener('click', function() {
+            window.location.href = 'credentials.html';
+        });
+    </script>
+</body>
+</html>

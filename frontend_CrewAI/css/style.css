@@ -1,0 +1,80 @@
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f4f4f9; /* Light gray for readability */
+}
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333333;
+    overflow-y: auto;
+}
+.sidebar h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+.sidebar a {
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+.sidebar a:hover {
+    background-color: #444444;
+}
+.sidebar a.active {
+    background-color: #137dc7;
+}
+.sidebar a i {
+    margin-right: 10px;
+}
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.section {
+    margin-bottom: 20px;
+}
+.section h5 {
+    background-color: #137dc7;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.section .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.section .controls input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+.section .controls button {
+    margin-left: 10px;
+}
+#global-create-btn {
+    display: block;
+    margin: 20px auto;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+#global-create-btn:hover {
+    background-color: #218838;
+}

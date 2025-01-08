@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação SQL - CrewAI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #137dc7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        code {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentação SQL - Estrutura do Banco de Dados CrewAI</h1>
+
+    <p>Esta documentação detalha as tabelas e colunas criadas no banco de dados <strong>crewai_db</strong>. Abaixo estão descritos as tabelas, suas colunas, tipos de dados e os relacionamentos definidos.</p>
+
+    <h2>Tabelas Criadas</h2>
+
+    <h3>1. Tabela: <code>credentials</code></h3>
+    <p>Armazena as credenciais de API e banco de dados cadastradas.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Coluna</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>credential_id</code></td>
+                <td><code>SERIAL PRIMARY KEY</code></td>
+                <td>Identificador único da credencial.</td>
+            </tr>
+            <tr>
+                <td><code>type</code></td>
+                <td><code>VARCHAR(50)</code></td>
+                <td>Tipo da credencial (ex.: LLM, Banco de Dados).</td>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td><code>VARCHAR(255)</code></td>
+                <td>Nome da credencial.</td>
+            </tr>
+            <tr>
+                <td><code>details</code></td>
+                <td><code>TEXT</code></td>
+                <td>Detalhes adicionais da credencial (como configuração de API).</td>
+            </tr>
+            <tr>
+                <td><code>created_at</code></td>
+                <td><code>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code></td>
+                <td>Data de criação.</td>
+            </tr>
+        </tbody>
+    </table>
+    <code>
+        CREATE TABLE credentials (
+            credential_id SERIAL PRIMARY KEY,
+            type VARCHAR(50) NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            details TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    </code>
+
+    <h3>2. Tabela: <code>tools</code></h3>
+    <p>Armazena as ferramentas cadastradas no sistema.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Coluna</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>tool_id</code></td>
+                <td><code>SERIAL PRIMARY KEY</code></td>
+                <td>Identificador único da ferramenta.</td>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td><code>VARCHAR(255)</code></td>
+                <td>Nome da ferramenta.</td>
+            </tr>
+            <tr>
+                <td><code>description</code></td>
+                <td><code>TEXT</code></td>
+                <td>Descrição da ferramenta.</td>
+            </tr>
+            <tr>
+                <td><code>created_at</code></td>
+                <td><code>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code></td>
+                <td>Data de criação.</td>
+            </tr>
+        </tbody>
+    </table>
+    <code>
+        CREATE TABLE tools (
+            tool_id SERIAL PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            description TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    </code>
+
+    <h3>3. Tabela: <code>tasks</code></h3>
+    <p>Armazena as tarefas disponíveis no sistema.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Coluna</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>task_id</code></td>
+                <td><code>SERIAL PRIMARY KEY</code></td>
+                <td>Identificador único da tarefa.</td>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td><code>VARCHAR(255)</code></td>
+                <td>Nome da tarefa.</td>
+            </tr>
+            <tr>
+                <td><code>description</code></td>
+                <td><code>TEXT</code></td>
+                <td>Descrição da tarefa.</td>
+            </tr>
+            <tr>
+                <td><code>expected_output</code></td>
+                <td><code>TEXT</code></td>
+                <td>Saída esperada da tarefa.</td>
+            </tr>
+            <tr>
+                <td><code>created_at</code></td>
+                <td><code>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code></td>
+                <td>Data de criação.</td>
+            </tr>
+        </tbody>
+    </table>
+    <code>
+        CREATE TABLE tasks (
+            task_id SERIAL PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            description TEXT NOT NULL,
+            expected_output TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    </code>
+
+    <h3>4. Tabela: <code>agents</code></h3>
+    <p>Armazena os agentes criados.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Coluna</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>agent_id</code></td>
+                <td><code>SERIAL PRIMARY KEY</code></td>
+                <td>Identificador único do agente.</td>
+            </tr>
+            <tr>
+                <td><code>role</code></td>
+                <td><code>VARCHAR(255)</code></td>
+                <td>Papel do agente.</td>
+            </tr>
+            <tr>
+                <td><code>goal</code></td>
+                <td><code>TEXT</code></td>
+                <td>Objetivo do agente.</td>
+            </tr>
+            <tr>
+                <td><code>backstory</code></td>
+                <td><code>TEXT</code></td>
+                <td>Histórico do agente.</td>
+            </tr>
+            <tr>
+                <td><code>verbose</code></td>
+                <td><code>BOOLEAN DEFAULT FALSE</code></td>
+                <td>Se o agente fornece detalhes adicionais.</td>
+            </tr>
+        </tbody>
+    </table>
+    <code>
+        CREATE TABLE agents (
+            agent_id SERIAL PRIMARY KEY,
+            role VARCHAR(255) NOT NULL,
+            goal TEXT NOT NULL,
+            backstory TEXT,
+            verbose BOOLEAN DEFAULT FALSE
+        );
+    </code>
+
+    <h3>Relacionamentos</h3>
+    <p>Relacionamentos entre as tabelas serão tratados durante a associação de dados no backend ou com tabelas auxiliares, como automations_tasks, agents_tasks, etc., caso necessário.</p>
+</body>
+</html>

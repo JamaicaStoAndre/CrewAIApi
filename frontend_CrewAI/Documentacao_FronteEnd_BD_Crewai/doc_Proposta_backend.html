@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - Proposta do Backend</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center text-primary mb-4">Documentação - Proposta do Backend</h1>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">1. Arquitetura Geral</h2>
+            <p>
+                O backend será baseado no framework <strong>FastAPI</strong>, utilizando uma arquitetura modular
+                e APIs RESTful. O projeto será organizado em pastas, com a seguinte estrutura:
+            </p>
+            <ul>
+                <li><strong>routes/</strong>: Contém os endpoints de cada funcionalidade.</li>
+                <li><strong>services/</strong>: Implementa a lógica de negócios e operações principais.</li>
+                <li><strong>models/</strong>: Define os modelos e tabelas do banco de dados com SQLAlchemy.</li>
+                <li><strong>schemas/</strong>: Define os esquemas de validação de dados (entrada e saída).</li>
+                <li><strong>config/</strong>: Configurações do projeto, como banco de dados e variáveis de ambiente.</li>
+                <li><strong>logs/</strong>: Registro de logs de atividades e erros.</li>
+            </ul>
+            <p>O servidor será hospedado na VPS usando Uvicorn com Gunicorn para produção.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">2. Operações no Backend</h2>
+            <p>Os endpoints RESTful seguirão o padrão CRUD. Exemplos de operações para cada entidade:</p>
+            <ul>
+                <li><strong>Automations:</strong>
+                    <ul>
+                        <li><code>POST /api/automations</code>: Criar nova automação.</li>
+                        <li><code>GET /api/automations</code>: Listar todas as automações.</li>
+                        <li><code>GET /api/automations/{id}</code>: Obter detalhes de uma automação específica.</li>
+                        <li><code>PUT /api/automations/{id}</code>: Atualizar automação existente.</li>
+                        <li><code>DELETE /api/automations/{id}</code>: Excluir automação.</li>
+                    </ul>
+                </li>
+                <li><strong>Ferramentas, Agentes e Tarefas:</strong> Endpoints similares ao de automações.</li>
+            </ul>
+            <p>Adicionalmente, endpoints para operações específicas como "executar automação" também serão implementados.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">3. Comunicação com o Banco de Dados</h2>
+            <p>O banco de dados utilizado será o PostgreSQL. Configurações incluem:</p>
+            <ul>
+                <li><strong>ORM:</strong> Utilizaremos <strong>SQLAlchemy</strong> para manipulação do banco de dados.</li>
+                <li><strong>Conexão:</strong> A string de conexão será definida em variáveis de ambiente (ex.: <code>DATABASE_URL</code>).</li>
+                <li><strong>Relatórios e logs:</strong> Logs de atividades e erros serão mantidos em arquivos no servidor.</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">4. Integração com o Frontend</h2>
+            <p>O frontend consumirá APIs REST para operações como criação, edição e exclusão de dados.</p>
+            <ul>
+                <li>Scripts JavaScript (ex.: <code>fetch</code> ou <code>axios</code>) serão utilizados para consumir as APIs.</li>
+                <li>Validações no backend garantirão dados consistentes e mensagens claras para o frontend.</li>
+                <li>Mensagens de sucesso ou erro seguirão padrões HTTP (ex.: <code>200 OK</code>, <code>400 Bad Request</code>).</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">5. Logs e Monitoramento</h2>
+            <p>Os logs serão configurados para registrar atividades e erros:</p>
+            <ul>
+                <li><strong>Atividades:</strong> Criação, edição, exclusão e execução de automações, tarefas, etc.</li>
+                <li><strong>Erros:</strong> Logs detalhados para análise de falhas, com possível integração futura ao Sentry.</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">6. Integração com Terceiros</h2>
+            <p>Endpoints serão implementados para consumir APIs externas, como OpenAI, Supabase, entre outros:</p>
+            <ul>
+                <li>Exemplo: <code>POST /api/credentials/openai</code> para salvar uma chave OpenAI.</li>
+                <li>Os dados de APIs externas serão armazenados no banco de dados conforme necessário.</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-secondary">7. Escalabilidade e Performance</h2>
+            <p>Para processos demorados, como geração de relatórios, consideraremos tarefas assíncronas utilizando Celery ou RQ no futuro.</p>
+            <p>A API será documentada automaticamente com Swagger (padrão no FastAPI).</p>
+        </section>
+
+        <section>
+            <h2 class="text-secondary">8. Primeiros Passos</h2>
+            <ol>
+                <li><strong>Configurar o ambiente:</strong> Criar um ambiente virtual Python e instalar dependências básicas (<code>fastapi</code>, <code>uvicorn</code>, <code>sqlalchemy</code>, <code>python-dotenv</code>).</li>
+                <li><strong>Conexão com o banco de dados:</strong> Configurar a string de conexão usando variáveis de ambiente.</li>
+                <li><strong>Estrutura do projeto:</strong> Criar as pastas e arquivos iniciais do projeto.</li>
+                <li><strong>Primeiros endpoints:</strong> Iniciar com as operações CRUD de uma entidade simples, como automações.</li>
+            </ol>
+        </section>
+
+        <footer class="mt-5 text-center text-secondary">
+            <p>Documentação criada para organizar e iniciar o backend do projeto CrewAI.</p>
+        </footer>
+    </div>
+</body>
+</html>

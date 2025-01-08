@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Menu lateral carregado dinamicamente -->
+    <div id="sidebar-placeholder"></div>
+
+    <!-- Conteúdo principal -->
+    <div class="content flex-grow-1 p-4">
+        <h1 class="text-center text-primary mb-4">Agentes</h1>
+
+        <!-- Sessão 1 - Agentes Criados -->
+        <div class="p-3 mb-5" style="background-color: #f1faff; border-radius: 10px;">
+            <h2>Agentes Criados</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Meta</th>
+                        <th>Ferramentas</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pesquisador de Matriz Energética</td>
+                        <td>Pesquisar a previsão de consumo energético global...</td>
+                        <td>SerperDevTool</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm">Editar</button>
+                            <button class="btn btn-danger btn-sm">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sessão 2 - Cadastro de Novo Agente -->
+        <div class="p-3" style="background-color: #f9f9f9; border-radius: 10px;">
+            <h2>Cadastrar Novo Agente</h2>
+            <form id="create-agent-form">
+                <!-- Campo para Nome do Agente -->
+                <div class="mb-3">
+                    <label for="agent-role" class="form-label">Nome do Agente (Role)</label>
+                    <input type="text" id="agent-role" class="form-control" placeholder="Ex: Pesquisador de Matriz Energética" required>
+                </div>
+
+                <!-- Campo para Meta do Agente -->
+                <div class="mb-3">
+                    <label for="agent-goal" class="form-label">Meta (Goal)</label>
+                    <textarea id="agent-goal" class="form-control" rows="3" placeholder="Ex: Pesquisar a previsão de consumo energético global..." required></textarea>
+                </div>
+
+                <!-- Campo para História de Fundo -->
+                <div class="mb-3">
+                    <label for="agent-backstory" class="form-label">História de Fundo (Backstory)</label>
+                    <textarea id="agent-backstory" class="form-control" rows="3" placeholder="Ex: Especialista em pesquisa de dados energéticos..." required></textarea>
+                </div>
+
+                <!-- Campo para Ferramentas Utilizadas -->
+                <div class="mb-3">
+                    <label for="agent-tools" class="form-label">Ferramentas Utilizadas</label>
+                    <select id="agent-tools" class="form-select" multiple required>
+                        <option value="SerperDevTool">SerperDevTool</option>
+                        <option value="CustomGraphTool">CustomGraphTool</option>
+                        <option value="PDFCreationTool">PDFCreationTool</option>
+                    </select>
+                    <!-- Botão para Criar Nova Ferramenta -->
+                    <div class="mt-2">
+                        <a href="tools.html" class="btn btn-link text-primary">
+                            <i class="fas fa-plus"></i> Criar Ferramenta
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Permitir Delegação -->
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="allow-delegation">
+                    <label class="form-check-label" for="allow-delegation">Permitir Delegação</label>
+                </div>
+
+                <!-- Modo Verbose -->
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="verbose-mode">
+                    <label class="form-check-label" for="verbose-mode">Modo Verbose</label>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Salvar Agente</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script para funcionalidade da página -->
+    <script>
+        // Carregar o menu lateral de sidebar.html
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar-placeholder').innerHTML = data;
+            });
+
+        // Evento para salvar o agente
+        document.getElementById('create-agent-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previne o envio do formulário
+            alert('Agente salvo com sucesso!'); // Exibe mensagem de sucesso
+            window.location.href = 'agents.html'; // Redireciona para a página de agentes
+        });
+
+        // Evento para cancelar e retornar à página principal
+        document.getElementById('cancel-button').addEventListener('click', function() {
+            window.location.href = 'agents.html'; // Redireciona para a página de agentes
+        });
+    </script>
+</body>
+</html>
