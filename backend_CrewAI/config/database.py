@@ -7,8 +7,8 @@ load_dotenv()
 
 # Conexões para múltiplos bancos
 DATABASES = {
-    "memoria_inovabot": os.getenv("MEMORIA_DB_URL", "postgresql://postgres:cf715447d23c8e8187b4668ca96c2524@postgres:5432/memoria_Inovabot"),
-    "crewai_db": os.getenv("CREWAI_DB_URL", "postgresql://postgres:cf715447d23c8e8187b4668ca96c2524@postgres:5432/crewai_db")
+    "memoria_inovabot": os.getenv("MEMORIA_DB_URL", "postgresql://postgres:XXXXXX@postgres:5432/memoria_Inovabot"),
+    "crewai_db": os.getenv("CREWAI_DB_URL", "postgresql://postgres:XXXXXX@postgres:5432/crewai_db")
 }
 
 # Criar motores de conexão
