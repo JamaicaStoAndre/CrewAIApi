@@ -1,4 +1,4 @@
-DATABASE_URL = "postgresql://postgres:cf715447d23c8e8187b4668ca96c2524@localhost:5432/crewai_db"
+DATABASE_URL = "postgresql://postgres:XXXXX@localhost:5432/crewai_db"
 
 try:
     engine = create_engine(DATABASE_URL)
